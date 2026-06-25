@@ -1,0 +1,269 @@
+/* ===========================
+   GOOGLE FONT RESET
+=========================== */
+
+*{
+
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+
+}
+
+/* ===========================
+   BODY
+=========================== */
+
+body{
+
+    background:#f6f8fb;
+
+    color:#222;
+
+    min-height:100vh;
+
+    padding:70px 25px;
+
+}
+
+/* ===========================
+   HEADER
+=========================== */
+
+header{
+
+    max-width:1200px;
+
+    margin:auto;
+
+    text-align:center;
+
+    margin-bottom:60px;
+
+}
+
+.back-btn{
+
+    display:inline-block;
+
+    text-decoration:none;
+
+    color:#3b82f6;
+
+    font-weight:600;
+
+    margin-bottom:30px;
+
+    transition:.3s;
+
+}
+
+.back-btn:hover{
+
+    transform:translateX(-6px);
+
+}
+
+header h1{
+
+    font-size:52px;
+
+    margin-bottom:18px;
+
+    color:#111;
+
+}
+
+header p{
+
+    color:#666;
+
+    font-size:18px;
+
+    line-height:1.7;
+
+}
+
+/* ===========================
+   GRID
+=========================== */
+
+.games-grid{
+
+    max-width:1200px;
+
+    margin:auto;
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(280px,1fr));
+
+    gap:28px;
+
+}
+
+/* ===========================
+   CARD
+=========================== */
+
+.game-card{
+
+    background:#fff;
+
+    border-radius:24px;
+
+    padding:35px;
+
+    text-decoration:none;
+
+    color:inherit;
+
+    border:1px solid #ececec;
+
+    box-shadow:
+
+        0 10px 25px rgba(0,0,0,.05);
+
+    transition:
+
+        .35s;
+
+}
+
+.game-card:hover{
+
+    transform:
+
+        translateY(-10px);
+
+    box-shadow:
+
+        0 25px 40px rgba(0,0,0,.12);
+
+}
+
+/* ===========================
+   ICON
+=========================== */
+
+.game-icon{
+
+    width:80px;
+
+    height:80px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:38px;
+
+    border-radius:22px;
+
+    margin-bottom:28px;
+
+    background:
+
+    linear-gradient(
+        135deg,
+        #7c3aed,
+        #3b82f6
+    );
+
+    color:white;
+
+}
+
+/* ===========================
+   TEXT
+=========================== */
+
+.game-card h2{
+
+    font-size:25px;
+
+    margin-bottom:12px;
+
+}
+
+.game-card p{
+
+    color:#666;
+
+    line-height:1.8;
+
+    margin-bottom:28px;
+
+}
+
+/* ===========================
+   BUTTON
+=========================== */
+
+.game-card span{
+
+    color:#2563eb;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.game-card:hover span{
+
+    letter-spacing:1px;
+
+}
+
+/* ===========================
+   COMING SOON
+=========================== */
+
+.coming{
+
+    opacity:.75;
+
+    cursor:not-allowed;
+
+}
+
+.coming:hover{
+
+    transform:none;
+
+    box-shadow:
+
+        0 10px 25px rgba(0,0,0,.05);
+
+}
+
+/* ===========================
+   MOBILE
+=========================== */
+
+@media(max-width:768px){
+
+header h1{
+
+    font-size:38px;
+
+}
+
+header p{
+
+    font-size:16px;
+
+}
+
+body{
+
+    padding:50px 18px;
+
+}
+
+}
