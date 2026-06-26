@@ -627,7 +627,7 @@ footer a:hover {
   transform: translateY(-1px) scale(1.05);
   }
 
-  footer {
+footer {
   background: rgb(183, 182, 182);
   font-weight: 700;
   font-size: 10px;
