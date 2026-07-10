@@ -322,7 +322,7 @@ nav {
   text-align: left;
 }
 
-.resources-cards a {
+.resources-cards a code {
   text-decoration: none;
   font-size: 12px;
   font-weight: 700;

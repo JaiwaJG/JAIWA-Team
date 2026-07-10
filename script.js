@@ -69,3 +69,23 @@ function revealOnScroll() {
 
 window.addEventListener("scroll", revealOnScroll);
 revealOnScroll();
+
+const buttons = document.querySelectorAll(".copy-btn");
+
+buttons.forEach(button => {
+
+    button.addEventListener("click", async () => {
+
+        const key = button.dataset.key;
+
+        await navigator.clipboard.writeText(key);
+
+        button.innerText = "Copied ✓";
+
+        setTimeout(() => {
+            button.innerText = "Copy Key";
+        }, 2000);
+
+    });
+
+});
