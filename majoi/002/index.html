@@ -1,0 +1,228 @@
+const verificationEmail = (code) => `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Verify your email</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:#f4f7fb;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color:#1f2937;
+    padding:40px 15px;
+}
+
+.wrapper{
+    max-width:640px;
+    margin:auto;
+}
+
+.card{
+    background:#fff;
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:
+        0 15px 40px rgba(0,0,0,.08),
+        0 2px 8px rgba(0,0,0,.04);
+}
+
+.header{
+    padding:45px 40px;
+    text-align:center;
+    background:
+        linear-gradient(135deg,#2563eb,#3b82f6,#60a5fa);
+    color:#fff;
+}
+
+.logo{
+    width:68px;
+    height:68px;
+    border-radius:18px;
+    margin:auto;
+    margin-bottom:18px;
+    background:rgba(255,255,255,.18);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:30px;
+    font-weight:bold;
+    backdrop-filter:blur(20px);
+}
+
+.header h1{
+    font-size:30px;
+    font-weight:700;
+}
+
+.header p{
+    margin-top:10px;
+    font-size:15px;
+    opacity:.92;
+    line-height:1.7;
+}
+
+.content{
+    padding:45px;
+}
+
+.title{
+    font-size:22px;
+    font-weight:700;
+    margin-bottom:12px;
+}
+
+.text{
+    color:#6b7280;
+    font-size:16px;
+    line-height:1.8;
+}
+
+.code-box{
+    margin:38px auto;
+    display:inline-block;
+    background:#eef8ee;
+    border:2px solid #b9f1bf;
+    color:#0f172a;
+    padding:18px 40px;
+    border-radius:16px;
+    font-size:40px;
+    font-weight:800;
+    letter-spacing:10px;
+}
+
+.notice{
+    margin-top:20px;
+    padding:18px;
+    background:#f8fafc;
+    border-left:5px solid #2563eb;
+    border-radius:10px;
+    color:#475569;
+    line-height:1.8;
+    font-size:15px;
+}
+
+.footer{
+    border-top:1px solid #e5e7eb;
+    padding:30px 40px;
+    text-align:center;
+    font-size:14px;
+    color:#94a3b8;
+    line-height:1.8;
+}
+
+.footer a{
+    color:#2563eb;
+    text-decoration:none;
+}
+
+@media(max-width:600px){
+
+.header,
+.content,
+.footer{
+padding:30px 22px;
+}
+
+.header h1{
+font-size:25px;
+}
+
+.code-box{
+font-size:30px;
+padding:15px 22px;
+letter-spacing:6px;
+}
+
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="wrapper">
+
+<div class="card">
+
+<div class="header">
+
+<div class="logo">
+JT
+</div>
+
+<h1>Email Verification</h1>
+
+<p>
+Welcome to <strong>JAIWA Team</strong>.<br>
+You're just one step away from activating your account.
+</p>
+
+</div>
+
+<div class="content">
+
+<div class="title">
+Verify Your Email Address
+</div>
+
+<p class="text">
+Please enter the verification code below to confirm your email address and complete your registration.
+</p>
+
+<center>
+
+<div class="code-box">
+${code}
+</div>
+
+</center>
+
+<div class="notice">
+
+<strong>Security Notice</strong><br><br>
+
+• This verification code is valid for <strong>10 minutes</strong>.<br>
+
+• It can only be used <strong>once</strong>.<br>
+
+• Never share this code with anyone.<br>
+
+• JAIWA Team will never ask you for this code via chat or phone.
+
+</div>
+
+</div>
+
+<div class="footer">
+
+Need help?
+
+Contact our support team anytime.
+
+<br><br>
+
+© ${new Date().getFullYear()} JAIWA Team
+
+<br>
+
+Building the future, one project at a time.
+
+</div>
+
+</div>
+
+</div>
+
+</body>
+</html>
+`;
+
+module.exports = verificationEmail;

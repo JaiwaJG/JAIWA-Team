@@ -1,0 +1,216 @@
+<!--<!DOCTYPE html>
+
+<html lang="en">
+      <head>
+            <meta charset="UTF-8">
+            <meta name="viewport"
+                  content="width=device-width, initial-scale=1.0">
+
+            <title>Madu-Rung | JAIWA Team</title>
+            <link rel="preconnect"
+                  href="https://fonts.googleapis.com">
+
+            <link rel="preconnect"
+                  href="https://fonts.gstatic.com"
+                  crossorigin>
+
+            <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+                  rel="stylesheet">
+
+            <link rel="stylesheet"
+                  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+            <link rel="stylesheet" href="assets/css/Madu-Rung/madu-rung.css">
+
+      </head>
+
+            <body>
+            <header>
+
+            <h1>Madu-Rung Control Panel</h1>
+            <p>
+            Manage everything from one place.
+            </p>
+
+            </header>
+
+            <main>
+
+            <section id="adminCards">
+
+            <a href="./Resources">
+            Resources manage
+            </a>
+
+            <a href="./Services/">
+            Manage Outline VPN
+            </a>
+
+            <a href="./Journey/">
+            Manage Journey
+            </a>
+
+            <a href="./Users/">
+            Manage Users
+            </a>
+
+            <a href="./Feedback/">
+            Manage Feedback
+
+            </a>
+
+            <a href="./Settings/">
+            Settings
+            </a>
+
+            </section>
+
+            </main>
+
+            <script src="../assets/js/config.js"></script>
+            <script src="../assets/js/storage.js"></script>
+            <script src="../assets/js/api.js"></script>
+            <script src="../assets/js/guard.js"></script>
+            <script src="../assets/js/Madu-Rung/madu-rung.js"></script>
+
+            </body>
+
+</html>-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Madu-Rung | JAIWA Team</title>
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <link rel="stylesheet" href="../assets/css/variables.css">
+    <link rel="stylesheet" href="../assets/css/reset.css">
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/navbar.css">
+    <link rel="stylesheet" href="../assets/css/Madu-Rung/madu-rung.css">
+</head>
+
+<body>
+    <!-- Site Header (shared with public site) -->
+    <header class="header">
+        <div class="container navbar">
+            <a href="../index.html" class="nav-logo">
+                <span>JAIWA Team</span>
+            </a>
+            <nav class="nav-menu">
+                <a href="../index.html" class="nav-link">Home</a>
+                <a href="../My-Journey/" class="nav-link">My Journey</a>
+                <a href="../Resources/" class="nav-link">Resources</a>
+                <a href="../Feedback/" class="nav-link">Feedback</a>
+                <a href="./" class="nav-link active">Madu-Rung</a>
+            </nav>
+            <div class="nav-actions">
+                <button class="btn btn-secondary" onclick="Guard.logout()">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    Logout
+                </button>
+                <button class="menu-toggle">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Admin Shell -->
+    <div class="admin-shell">
+
+        <!-- Sidebar -->
+        <aside class="admin-sidebar" id="adminSidebar">
+            <div class="sidebar-logo">
+                <i class="fa-solid fa-screwdriver-wrench"></i>
+                <span>Madu-Rung</span>
+            </div>
+            <div class="sidebar-section-label">Manage</div>
+            <nav class="sidebar-nav">
+                <a href="./" class="sidebar-link active">
+                    <i class="fa-solid fa-gauge-high"></i> Dashboard
+                </a>
+                <a href="./Resources/" class="sidebar-link">
+                    <i class="fa-solid fa-book"></i> Resources
+                </a>
+                <a href="./Services/" class="sidebar-link">
+                    <i class="fa-solid fa-server"></i> Outline VPN
+                </a>
+                <a href="./Journey/" class="sidebar-link">
+                    <i class="fa-solid fa-route"></i> Journey
+                </a>
+                <a href="./Users/" class="sidebar-link">
+                    <i class="fa-solid fa-users"></i> Users
+                </a>
+                <a href="./Feedback/" class="sidebar-link">
+                    <i class="fa-solid fa-comment-dots"></i> Feedback
+                </a>
+                <a href="./Settings/" class="sidebar-link">
+                    <i class="fa-solid fa-gear"></i> Settings
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main -->
+        <main class="admin-main">
+
+            <!-- Toolbar (breadcrumb + user) -->
+            <div class="admin-toolbar">
+                <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle sidebar">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+                <nav class="breadcrumb">
+                    <a href="./">Dashboard</a>
+                </nav>
+                <div class="user-chip">
+                    <div class="user-avatar" id="userAvatar">M</div>
+                    <span class="user-name" id="userName">Madu</span>
+                    <button class="btn-logout" onclick="Guard.logout()" aria-label="Logout">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Page Header -->
+            <div class="admin-page-header">
+                <h1>Control Panel</h1>
+                <p>Manage everything from one place.</p>
+            </div>
+
+            <!-- Admin Cards 
+            <section id="adminCards">
+                <a href="./Resources/">Resources</a>
+                <a href="./Services/">Outline VPN</a>
+                <a href="./Journey/">Journey</a>
+                <a href="./Users/">Users</a>
+                <a href="./Feedback/">Feedback</a>
+                <a href="./Settings/">Settings</a>
+            </section> -->
+
+        </main>
+    </div>
+
+    <script src="../assets/js/config.js"></script>
+    <script src="../assets/js/storage.js"></script>
+    <script src="../assets/js/api.js"></script>
+    <script src="../assets/js/guard.js"></script>
+    <script src="../assets/js/navbar.js"></script>
+    <script src="../assets/js/Madu-Rung/madu-rung.js"></script>
+</body>
+</html>

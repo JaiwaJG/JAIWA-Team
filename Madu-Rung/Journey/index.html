@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Manage Journey | JAIWA Team</title>
+
+</head>
+
+<body>
+
+<header>
+
+<a href="../">
+
+← Dashboard
+
+</a>
+
+<h1>Manage My Journey</h1>
+
+<p>
+
+Manage education, experience, skills and achievements.
+
+</p>
+
+</header>
+
+<main>
+
+<section>
+
+<h2>Add Journey</h2>
+
+<form id="journeyForm">
+
+<input
+type="text"
+id="title"
+placeholder="Title"
+required>
+
+<input
+type="text"
+id="organization"
+placeholder="Organization"
+required>
+
+<input
+type="text"
+id="date"
+placeholder="2025 - Present"
+required>
+
+<textarea
+id="description"
+placeholder="Description"
+required></textarea>
+
+<button type="submit">
+
+Save Journey
+
+</button>
+
+</form>
+
+</section>
+
+<hr>
+
+<section>
+
+<h2>Journey List</h2>
+
+<div id="journeyList">
+
+</div>
+
+</section>
+
+</main>
+
+<script src="../../assets/js/config.js"></script>
+<script src="../../assets/js/storage.js"></script>
+<script src="../../assets/js/api.js"></script>
+<script src="../../assets/js/guard.js"></script>
+
+<script src="../../assets/js/Madu-Rung/journey.js"></script>
+
+</body>
+</html>

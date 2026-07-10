@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Manage Learning | JAIWA Team</title>
+
+</head>
+
+<body>
+
+<header>
+
+<a href="../">
+
+← Dashboard
+
+</a>
+
+<h1>Manage Learning</h1>
+
+<p>
+
+Manage websites, apps and courses.
+
+</p>
+
+</header>
+
+<main>
+
+<section>
+
+<h2>Add Resource</h2>
+
+<form id="learningForm">
+
+<input
+type="text"
+id="title"
+placeholder="Title"
+required>
+
+<select id="type">
+
+<option value="Website">Website</option>
+
+<option value="App">App</option>
+
+<option value="Course">Course</option>
+
+</select>
+
+<input
+type="text"
+id="category"
+placeholder="Category"
+required>
+
+<input
+type="url"
+id="image"
+placeholder="Image URL">
+
+<input
+type="url"
+id="url"
+placeholder="Website / App URL"
+required>
+
+<button type="submit">
+
+Save Resource
+
+</button>
+
+</form>
+
+</section>
+
+<hr>
+
+<section>
+
+<h2>Resources</h2>
+
+<div id="learningList"></div>
+
+</section>
+
+</main>
+
+<script src="../../assets/js/config.js"></script>
+<script src="../../assets/js/storage.js"></script>
+<script src="../../assets/js/api.js"></script>
+<script src="../../assets/js/guard.js"></script>
+
+<script src="../../assets/js/Madu-Rung/learning.js"></script>
+
+</body>
+</html>

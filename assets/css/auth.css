@@ -1,0 +1,892 @@
+/* ==========================================================
+   JAIWA TEAM AUTH UI
+   Shared Styles (Login + Register)
+   File : assets/css/auth.css
+   ========================================================== */
+
+
+/* ===============================
+   Google Fonts
+================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+
+/* ===============================
+   Root Variables
+================================ */
+
+:root{
+
+    --primary:#2F80ED;
+    --primary-hover:#1565D8;
+
+    --success:#34C759;
+    --danger:#FF3B30;
+    --warning:#FF9500;
+
+    --text:#1F2937;
+    --text-light:#6B7280;
+
+    --border:#E5E7EB;
+    --background:#F5F7FB;
+
+    --white:#FFFFFF;
+
+    --radius:18px;
+    --radius-sm:12px;
+
+    --transition:.28s ease;
+
+    --shadow-sm:
+        0 4px 14px rgba(0,0,0,.05);
+
+    --shadow:
+        0 12px 35px rgba(0,0,0,.08);
+
+}
+
+
+/* ===============================
+   Reset
+================================ */
+
+*{
+
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+
+}
+
+html{
+
+    scroll-behavior:smooth;
+
+}
+
+body{
+
+    font-family:"Inter",sans-serif;
+
+    background:var(--background);
+
+    color:var(--text);
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:40px 18px;
+
+}
+
+
+/* ===============================
+   Background
+================================ */
+
+body::before{
+
+    content:"";
+
+    position:fixed;
+
+    inset:0;
+
+    background:
+
+        radial-gradient(circle at 15% 20%,
+        rgba(47,128,237,.06),
+        transparent 28%),
+
+        radial-gradient(circle at 85% 80%,
+        rgba(47,128,237,.05),
+        transparent 30%);
+
+    z-index:-1;
+
+}
+
+
+/* ===============================
+   Card
+================================ */
+
+.auth-container{
+
+    width:100%;
+
+    max-width:430px;
+
+    background:#fff;
+
+    border-radius:28px;
+
+    border:1px solid rgba(0,0,0,.05);
+
+    padding:42px 34px;
+
+    box-shadow:
+
+        0 24px 60px rgba(0,0,0,.08),
+
+        0 5px 14px rgba(0,0,0,.04);
+
+    animation:cardUp .45s ease;
+
+}
+
+
+/* ===============================
+   Animation
+================================ */
+
+@keyframes cardUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(25px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:none;
+
+    }
+
+}
+
+
+/* ===============================
+   Logo
+================================ */
+
+.auth-logo{
+
+    display:flex;
+
+    justify-content:center;
+
+    margin-bottom:22px;
+
+}
+
+.auth-logo img{
+
+    width:58px;
+
+    height:58px;
+
+    object-fit:contain;
+
+}
+
+
+/* ===============================
+   Header
+================================ */
+
+.auth-header{
+
+    text-align:center;
+
+    margin-bottom:30px;
+
+}
+
+.auth-header h1{
+
+    font-size:40px;
+
+    font-weight:800;
+
+    letter-spacing:-1px;
+
+    color:var(--text);
+
+}
+
+.auth-header p{
+
+    margin-top:10px;
+
+    color:var(--text-light);
+
+    font-size:15px;
+
+}
+
+
+/* ===============================
+   Form
+================================ */
+
+.auth-form{
+
+    width:100%;
+
+}
+
+.input-group{
+
+    margin-bottom:20px;
+
+}
+
+.input-group label{
+
+    display:block;
+
+    margin-bottom:9px;
+
+    font-size:13px;
+
+    font-weight:600;
+
+    color:var(--text);
+
+}
+
+/* ==========================================================
+   INPUTS
+========================================================== */
+
+.input-wrapper{
+
+    position:relative;
+
+}
+
+.input-wrapper input{
+
+    width:100%;
+
+    height:56px;
+
+    padding:0 52px;
+
+    border:1.8px solid var(--border);
+
+    border-radius:16px;
+
+    background:#fff;
+
+    color:var(--text);
+
+    font-size:15px;
+
+    transition:var(--transition);
+
+    outline:none;
+
+}
+
+.input-wrapper input::placeholder{
+
+    color:#A0A4AB;
+
+}
+
+.input-wrapper input:focus{
+
+    border-color:var(--primary);
+
+    box-shadow:0 0 0 4px rgba(47,128,237,.10);
+
+}
+
+
+/* ==========================================================
+   ICONS
+========================================================== */
+
+.input-icon{
+
+    position:absolute;
+
+    top:50%;
+
+    left:18px;
+
+    transform:translateY(-50%);
+
+    font-size:18px;
+
+    color:#9CA3AF;
+
+    transition:var(--transition);
+
+}
+
+.input-wrapper input:focus~.input-icon{
+
+    color:var(--primary);
+
+}
+
+
+/* ==========================================================
+   PASSWORD BUTTON
+========================================================== */
+
+.password-toggle{
+
+    position:absolute;
+
+    top:50%;
+
+    right:16px;
+
+    transform:translateY(-50%);
+
+    width:34px;
+
+    height:34px;
+
+    border:none;
+
+    background:none;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    cursor:pointer;
+
+    color:#9CA3AF;
+
+    transition:.25s;
+
+}
+
+.password-toggle:hover{
+
+    color:var(--primary);
+
+}
+
+
+/* ==========================================================
+   OPTIONS ROW
+========================================================== */
+
+.options-row{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin:20px 0 24px;
+
+    font-size:14px;
+
+}
+
+.options-row label{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    cursor:pointer;
+
+    color:var(--text-light);
+
+}
+
+.options-row input[type=checkbox]{
+
+    width:17px;
+
+    height:17px;
+
+    accent-color:var(--primary);
+
+}
+
+
+/* ==========================================================
+   LINKS
+========================================================== */
+
+a{
+
+    color:var(--primary);
+
+    text-decoration:none;
+
+    transition:.25s;
+
+}
+
+a:hover{
+
+    color:var(--primary-hover);
+
+}
+
+
+/* ==========================================================
+   PRIMARY BUTTON
+========================================================== */
+
+.btn-submit{
+
+    width:100%;
+
+    height:56px;
+
+    border:none;
+
+    border-radius:16px;
+
+    background:linear-gradient(
+        135deg,
+        #2F80ED,
+        #1D6FE8
+    );
+
+    color:#fff;
+
+    font-size:16px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+.btn-submit:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:0 14px 30px rgba(47,128,237,.25);
+
+}
+
+.btn-submit:active{
+
+    transform:scale(.985);
+
+}
+
+.btn-submit:disabled{
+
+    opacity:.65;
+
+    cursor:not-allowed;
+
+}
+
+
+/* ==========================================================
+   DIVIDER
+========================================================== */
+
+.divider{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:16px;
+
+    margin:28px 0;
+
+}
+
+.divider::before,
+
+.divider::after{
+
+    content:"";
+
+    flex:1;
+
+    height:1px;
+
+    background:var(--border);
+
+}
+
+.divider span{
+
+    color:#9CA3AF;
+
+    font-size:13px;
+
+    font-weight:600;
+
+    letter-spacing:1px;
+
+}
+
+/* ==========================================================
+   SOCIAL LOGIN
+========================================================== */
+
+.social-login{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:14px;
+
+}
+
+.btn-social{
+
+    height:56px;
+
+    border:1.8px solid var(--border);
+
+    border-radius:16px;
+
+    background:#fff;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:10px;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    color:var(--text);
+
+    cursor:pointer;
+
+    transition:var(--transition);
+
+}
+
+.btn-social:hover{
+
+    border-color:var(--primary);
+
+    background:#F8FAFF;
+
+    transform:translateY(-2px);
+
+    box-shadow:var(--shadow-sm);
+
+}
+
+.btn-social img{
+
+    width:20px;
+
+    height:20px;
+
+    object-fit:contain;
+
+}
+
+.btn-social i{
+
+    font-size:22px;
+
+}
+
+
+/* ==========================================================
+   FOOTER
+========================================================== */
+
+.auth-footer{
+
+    margin-top:30px;
+
+    text-align:center;
+
+    font-size:14px;
+
+    color:var(--text-light);
+
+}
+
+.auth-footer a{
+
+    font-weight:700;
+
+}
+
+
+/* ==========================================================
+   ALERT
+========================================================== */
+
+.auth-alert{
+
+    display:none;
+
+    margin-bottom:18px;
+
+    padding:14px 16px;
+
+    border-radius:14px;
+
+    font-size:14px;
+
+    font-weight:500;
+
+}
+
+.auth-alert.show{
+
+    display:block;
+
+}
+
+.auth-alert.error{
+
+    background:#FFF2F2;
+
+    border:1px solid #FFD3D3;
+
+    color:#D92D20;
+
+}
+
+.auth-alert.success{
+
+    background:#F0FFF4;
+
+    border:1px solid #B7F0C2;
+
+    color:#16A34A;
+
+}
+
+
+/* ==========================================================
+   LOADING BUTTON
+========================================================== */
+
+.btn-submit.loading{
+
+    pointer-events:none;
+
+    opacity:.75;
+
+}
+
+.btn-submit.loading::after{
+
+    content:"";
+
+    width:18px;
+
+    height:18px;
+
+    margin-left:10px;
+
+    display:inline-block;
+
+    border:2px solid rgba(255,255,255,.4);
+
+    border-top-color:#fff;
+
+    border-radius:50%;
+
+    animation:spin .8s linear infinite;
+
+}
+
+@keyframes spin{
+
+    to{
+
+        transform:rotate(360deg);
+
+    }
+
+}
+
+
+/* ==========================================================
+   INPUT STATES
+========================================================== */
+
+.input-wrapper.success input{
+
+    border-color:#34C759;
+
+}
+
+.input-wrapper.error input{
+
+    border-color:#FF3B30;
+
+}
+
+.input-wrapper.success .input-icon{
+
+    color:#34C759;
+
+}
+
+.input-wrapper.error .input-icon{
+
+    color:#FF3B30;
+
+}
+
+
+/* ==========================================================
+   RESPONSIVE
+========================================================== */
+
+@media(max-width:600px){
+
+    body{
+
+        padding:20px;
+
+    }
+
+    .auth-container{
+
+        padding:28px 22px;
+
+        border-radius:22px;
+
+    }
+
+    .auth-header h1{
+
+        font-size:32px;
+
+    }
+
+    .social-login{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .options-row{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+        gap:12px;
+
+    }
+
+}
+
+
+/* ==========================================================
+   SMALL MOBILE
+========================================================== */
+
+@media(max-width:400px){
+
+    .auth-container{
+
+        padding:22px 18px;
+
+    }
+
+    .input-wrapper input{
+
+        height:52px;
+
+        font-size:14px;
+
+    }
+
+    .btn-submit{
+
+        height:52px;
+
+    }
+
+    .btn-social{
+
+        height:52px;
+
+    }
+
+}
+
+
+/* ==========================================================
+   ACCESSIBILITY
+========================================================== */
+
+:focus-visible{
+
+    outline:2px solid var(--primary);
+
+    outline-offset:3px;
+
+}
+
+::selection{
+
+    background:#2F80ED22;
+
+}
+
+/* =========================
+   Input Icons
+========================= */
+
+.input-wrapper{
+    position: relative;
+}
+
+.input-icon{
+    position: absolute;
+    left: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    color: #7a7a7a;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.input-icon svg{
+    width:20px;
+    height:20px;
+    display:block;
+}
+
+.input-wrapper input{
+    padding-left:52px;
+}
+
+
+/* ==========================================================
+   END OF SHARED AUTH STYLES
+========================================================== */

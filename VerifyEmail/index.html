@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Verify Email | JAIWA Team</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet" href="../assets/css/variables.css">
+    <link rel="stylesheet" href="../assets/css/reset.css">
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/auth.css">
+    <link rel="stylesheet" href="../assets/css/verify-email.css">
+
+</head>
+
+<body>
+
+<div class="particles"></div>
+
+<div class="auth-container">
+
+    <div class="auth-logo">
+
+        <img src="../assets/images/logo.png"
+             alt="JAIWA Team">
+
+    </div>
+
+    <div class="auth-header">
+
+        <h1>Verify Your Email</h1>
+
+        <p>
+
+            We've sent an 8-character verification code to your email address.
+            Enter it below to verify your account.
+
+        </p>
+
+    </div>
+
+    <form
+        id="verifyEmailForm"
+        class="auth-form">
+
+        <div class="input-group">
+
+            <label for="email">Email Address</label>
+
+            <div class="input-wrapper">
+
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="Enter your email"
+                    required>
+
+            </div>
+
+        </div>
+
+        <div class="input-group">
+
+            <label for="code">Verification Code</label>
+
+            <div class="input-wrapper">
+
+                <input
+                    type="text"
+                    id="code"
+                    placeholder="Enter 8-character code"
+                    maxlength="8"
+                    required>
+
+            </div>
+
+        </div>
+
+        <button
+            type="submit"
+            class="btn-submit">
+
+            Verify Email
+
+        </button>
+
+    </form>
+
+    <div class="verify-content">
+
+        <button
+            type="button"
+            class="btn-submit"
+            id="resendBtn">
+
+            Resend Code
+
+        </button>
+
+    </div>
+
+    <div class="auth-footer">
+
+        Already verified?
+
+        <a href="../Login/">
+
+            Sign In
+
+        </a>
+
+    </div>
+
+</div>
+
+<script src="../assets/js/auth.js"></script>
+<script src="../assets/js/verify-email.js"></script>
+
+</body>
+
+</html>

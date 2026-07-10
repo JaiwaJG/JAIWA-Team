@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio | Liquid Glass</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- Apple SF Pro Font (via Google Fonts fallback) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap"
+    rel="stylesheet"
+  />
+</head>
+<body>
+  <!-- Animated Liquid Background -->
+  <div class="liquid-bg">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="glass-nav">
+    <div class="container nav-container">
+      <div class="logo">ALEX<span>.DEV</span></div>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#work">Work</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <button class="menu-toggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <div class="container hero-content">
+      <h1 class="glass-title">
+        Crafting <span class="highlight">Digital</span> <br />
+        Experiences with <span class="highlight">Glass</span>
+      </h1>
+      <p class="glass-subtitle">
+        I'm Alex — a creative developer & UI/UX designer crafting premium,
+        glassmorphic experiences.
+      </p>
+      <div class="cta-group">
+        <a href="#work" class="btn btn-primary">View My Work</a>
+        <a href="#contact" class="btn btn-secondary">Contact Me</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="section glass-section">
+    <div class="container">
+      <h2 class="section-title">About Me</h2>
+      <div class="about-grid">
+        <div class="glass-card">
+          <h3>Design Philosophy</h3>
+          <p>
+            I believe in minimalism, clarity, and depth. My work blends Apple’s
+            design language with modern glassmorphism techniques.
+          </p>
+        </div>
+        <div class="glass-card">
+          <h3>Technical Skills</h3>
+          <p>
+            Expert in HTML5, CSS3, JavaScript (ES6+), React, and modern UI
+            techniques like glassmorphism, animations, and accessibility.
+          </p>
+        </div>
+        <div class="glass-card">
+          <h3>My Tools</h3>
+          <p>VS Code, Figma, Webpack, GitHub, Tailwind CSS, and more.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Work Section -->
+  <section id="work" class="section glass-section">
+    <div class="container">
+      <h2 class="section-title">Selected Works</h2>
+      <div class="work-grid">
+        <div class="glass-card work-item">
+          <img src="https://placehold.co/600x400/ffffff/2d2d2d?text=Project+1" alt="Project 1" />
+          <div class="card-content">
+            <h3>Lumina Dashboard</h3>
+            <p>A glassmorphic SaaS analytics dashboard with real-time data.</p>
+          </div>
+        </div>
+        <div class="glass-card work-item">
+          <img src="https://placehold.co/600x400/ffffff/2d2d2d?text=Project+2" alt="Project 2" />
+          <div class="card-content">
+            <h3>Apex Finance App</h3>
+            <p>Frosted glass UI for a modern banking application.</p>
+          </div>
+        </div>
+        <div class="glass-card work-item">
+          <img src="https://placehold.co/600x400/ffffff/2d2d2d?text=Project+3" alt="Project 3" />
+          <div class="card-content">
+            <h3>CloudFlow</h3>
+            <p>Cloud storage interface with dynamic glass effects.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="section glass-section">
+    <div class="container">
+      <h2 class="section-title">Get In Touch</h2>
+      <div class="contact-form glass-card">
+        <form onsubmit="event.preventDefault(); alert('Thanks for reaching out!');">
+          <input type="text" placeholder="Your Name" required />
+          <input type="email" placeholder="Your Email" required />
+          <textarea rows="5" placeholder="Your Message"></textarea>
+          <button type="submit" class="btn btn-primary">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="glass-footer">
+    <div class="container">
+      <p>© 2024 Alex.dev — Designed with Glass & Precision.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

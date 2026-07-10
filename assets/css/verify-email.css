@@ -1,0 +1,101 @@
+/* ==========================================================
+   JAIWA Team
+   File : assets/css/verify-email.css
+   Purpose : Verify Email
+   Version : 1.0
+========================================================== */
+
+
+/* ========================================
+   Container
+======================================== */
+
+.auth-container{
+
+    max-width:460px;
+
+}
+
+
+/* ========================================
+   Header
+======================================== */
+
+.auth-header{
+
+    margin-bottom:32px;
+
+}
+
+.auth-header p{
+
+    max-width:340px;
+
+    margin:14px auto 0;
+
+    line-height:1.7;
+
+}
+
+
+/* ========================================
+   Verify Content
+======================================== */
+
+.verify-content{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:20px;
+
+}
+
+.verify-content .btn-submit{
+
+    margin-top:6px;
+
+}
+
+
+/* ========================================
+   Footer
+======================================== */
+
+.auth-footer{
+
+    margin-top:30px;
+
+}
+
+.auth-footer a{
+
+    font-weight:600;
+
+}
+
+
+/* ========================================
+   Responsive
+======================================== */
+
+@media(max-width:768px){
+
+    .auth-container{
+
+        padding:34px 24px;
+
+    }
+
+}
+
+@media(max-width:480px){
+
+    .auth-container{
+
+        padding:28px 20px;
+
+    }
+
+}

@@ -1,0 +1,131 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+/**
+ * User roles.
+ *
+ * - USER: Standard application user
+ * - MADU: Administrator with elevated privileges
+ * - ADMIN: Super administrator with full access
+ */
+enum Role {
+  USER
+  MADU
+  ADMIN
+}
+
+model User {
+  id        String   @id @default(cuid())
+  username  String   @unique
+  email     String   @unique
+  password  String
+  role      Role     @default(USER)
+  isVerified Boolean @default(false)
+
+  // Email verification token (hashed)
+  verifyTokenHash   String?   @unique
+  verifyTokenExpiry DateTime?
+
+  // Password reset token (hashed)
+  resetTokenHash   String?   @unique
+  resetTokenExpiry DateTime?
+
+  // Email change verification
+  emailChangeTokenHash String?
+  emailChangeEmail     String?
+  emailChangeExpiresAt DateTime?
+
+  // Refresh token rotation
+  refreshTokens RefreshToken[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([email])
+  @@index([role])
+}
+
+/**
+ * Refresh Token model.
+ *
+ * Stores hashed refresh tokens for token rotation and revocation.
+ * Each token belongs to a single user and a single device/session.
+ */
+model RefreshToken {
+  id        String    @id @default(cuid())
+  tokenHash String    @unique
+  userId    String
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  expiresAt DateTime
+  revokedAt DateTime?
+  ipAddress String?
+  userAgent String?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  @@index([userId])
+  @@index([tokenHash])
+}
+
+model PendingUser {
+  id                String   @id @default(cuid())
+  username          String   @unique
+  email             String   @unique
+  password          String
+  role              Role     @default(USER)
+  verifyTokenHash   String?  @unique
+  verifyTokenExpiry DateTime?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  @@index([email])
+  @@index([username])
+}
+
+model Service {
+  id            String   @id @default(cuid())
+
+  serverName    String
+  country       String
+  status        String
+  traffic       String
+  expire        DateTime
+  accessKey     String
+
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+model Journey {
+  id            String   @id @default(cuid())
+
+  title         String
+  organization  String
+  date          String
+  description   String
+
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model Book {
+  id            String   @id @default(cuid())
+
+  title         String
+  description   String
+  author        String
+  category      String
+  language      String
+  coverImage    String
+  pdfFile       String
+  pages         Int
+
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+

@@ -1,0 +1,521 @@
+/* ==========================================================
+   JAIWA Team
+   File : assets/css/hero.css
+   Purpose : Hero Section
+   Version : 1.0
+========================================================== */
+
+
+/* ========================================
+   Hero
+======================================== */
+
+.hero{
+
+    display:flex;
+
+    align-items:center;
+
+    min-height:100vh;
+
+    padding-top:120px;
+
+    padding-bottom:80px;
+
+    background: linear-gradient(135deg, rgba(240, 240, 245, 0.8), rgba(220, 220, 225, 0.8)); /* Soft gradient background */
+
+    border-radius: 0 0 30px 30px; /* Rounded bottom corners */
+
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+
+}
+
+
+.hero-container{
+
+    display:grid;
+
+    grid-template-columns:1.1fr .9fr;
+
+    align-items:center;
+
+    gap:80px;
+
+}
+
+
+/* ========================================
+   Content
+======================================== */
+
+.hero-content{
+
+    max-width:620px;
+
+}
+
+
+.hero-badge{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    padding:8px 18px;
+
+    border-radius:999px;
+
+    background:rgba(255,255,255,0.3);
+
+    border:1px solid rgba(255,255,255,0.6);
+
+    backdrop-filter:blur(8px);
+
+    -webkit-backdrop-filter:blur(8px);
+
+    color:var(--text-secondary);
+
+    font-size:.85rem;
+
+    font-weight:600;
+
+    letter-spacing:.08em;
+
+    text-transform:uppercase;
+
+    box-shadow:0 2px 8px rgba(0,0,0,.05);
+
+}
+
+
+.hero-title{
+
+    margin-top:24px;
+
+    font-family: "Playfair", serif; /* Apply Playfair font */
+
+    font-size:clamp(3rem,7vw,5rem);
+
+    font-weight:800;
+
+    line-height:1.05;
+
+    letter-spacing:-2px;
+
+    color:var(--text-primary);
+
+}
+
+
+.hero-title span{
+
+    color:var(--primary-500);
+
+}
+
+
+.hero-description{
+
+    margin-top:24px;
+
+    max-width:560px;
+
+    font-size:1.15rem;
+
+    line-height:1.8;
+
+    color:var(--text-secondary);
+
+}
+
+
+.hero-buttons{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+
+    margin-top:42px;
+
+}
+
+
+/* ========================================
+   Image
+======================================== */
+
+.hero-image{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+
+.hero-image img{
+
+    width:100%;
+
+    max-width:520px;
+
+}
+
+
+/* ========================================
+   Responsive
+======================================== */
+
+@media(max-width:992px){
+
+    .hero{
+
+        padding-top:140px;
+
+    }
+
+    .hero-container{
+
+        grid-template-columns:1fr;
+
+        gap:60px;
+
+        text-align:center;
+
+    }
+
+    .hero-content{
+
+        margin:auto;
+
+    }
+
+    .hero-buttons{
+
+        justify-content:center;
+
+        flex-wrap:wrap;
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    .hero-title{
+
+        font-size:3rem;
+
+    }
+
+    .hero-description{
+
+        font-size:1rem;
+
+    }
+
+}
+
+@media(max-width:480px){
+
+    .hero{
+
+        min-height:auto;
+
+        padding-top:120px;
+
+        padding-bottom:70px;
+
+    }
+
+    .hero-buttons{
+
+        flex-direction:column;
+
+    }
+
+}
+
+/* ========================================
+   Hero Visual
+======================================== */
+
+.hero-visual{
+
+    position:relative;
+
+    width:100%;
+
+    height:500px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+.visual-circle{
+
+    position:absolute;
+
+    border-radius:50%;
+
+    filter:blur(6px);
+
+}
+
+.circle-1{
+
+    width:260px;
+
+    height:260px;
+
+    background:rgba(47,128,237,.08);
+
+    top:40px;
+
+    left:20px;
+
+}
+
+.circle-2{
+
+    width:180px;
+
+    height:180px;
+
+    background:rgba(99,102,241,.10);
+
+    bottom:30px;
+
+    right:30px;
+
+}
+
+.visual-card{
+
+    position:relative;
+
+    z-index:2;
+
+    width:320px;
+
+    padding:40px;
+
+    background:rgba(255,255,255,0.2);
+
+    border:1px solid rgba(255,255,255,0.4);
+
+    backdrop-filter:blur(20px);
+
+    -webkit-backdrop-filter:blur(20px);
+
+    border-radius:24px;
+
+    box-shadow:0 12px 30px rgba(0,0,0,.1);
+
+}
+
+.visual-card span{
+
+    display:inline-block;
+
+    margin-bottom:14px;
+
+    font-size:.8rem;
+
+    font-weight:700;
+
+    letter-spacing:.15em;
+
+    color:var(--primary-500);
+
+}
+
+.visual-card h3{
+
+    font-size:1.8rem;
+
+    margin-bottom:16px;
+
+    line-height:1.2;
+
+}
+
+.visual-card p{
+
+    color:var(--text-secondary);
+
+    line-height:1.7;
+
+}
+
+@media(max-width:992px){
+
+    .hero-visual{
+
+        height:360px;
+
+    }
+
+}
+
+/* ========================================
+   Hero Statistics
+======================================== */
+
+.hero-stats{
+
+    margin-top:70px;
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:24px;
+
+}
+
+.stat-item{
+
+    text-align:center;
+
+    padding:26px;
+
+    border:1px solid var(--border);
+
+    border-radius:20px;
+
+    background:var(--surface);
+
+    transition:var(--transition);
+
+}
+
+.stat-item:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:var(--shadow-md);
+
+}
+
+.stat-item h3{
+
+    font-size:2rem;
+
+    font-weight:800;
+
+    color:var(--primary-500);
+
+}
+
+.stat-item p{
+
+    margin-top:8px;
+
+    font-size:.95rem;
+
+}
+
+@media(max-width:768px){
+
+    .hero-stats{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+/* ========================================
+   Scroll Indicator
+======================================== */
+
+.scroll-indicator{
+
+    margin-top:60px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    gap:12px;
+
+    color:var(--text-secondary);
+
+    font-size:.85rem;
+
+    letter-spacing:.12em;
+
+    text-transform:uppercase;
+
+}
+
+.scroll-line{
+
+    width:2px;
+
+    height:42px;
+
+    background:var(--gray-300);
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+.scroll-line::after{
+
+    content:"";
+
+    position:absolute;
+
+    top:-100%;
+
+    left:0;
+
+    width:100%;
+
+    height:100%;
+
+    background:var(--primary-500);
+
+    animation:scrollMove 1.8s infinite;
+
+}
+
+@keyframes scrollMove{
+
+    from{
+
+        top:-100%;
+
+    }
+
+    to{
+
+        top:100%;
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    .scroll-indicator{
+
+        display:none;
+
+    }
+
+}

@@ -434,6 +434,26 @@ nav {
   box-shadow: 0 12px 25px rgba(0, 0, 0, 0.18);
 }
 
+/* Copy Button */
+.copy-btn {
+  display: inline-block;
+  padding: 15px 30px;
+  border: none;
+  border-radius: 14px;
+  background: #5f8190;
+  color: white;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.copy-btn:hover{
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.18);
+}
+
+
 .thanks-card {
   animation: popUp 0.7s ease forwards;
 }

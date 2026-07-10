@@ -1,0 +1,348 @@
+/* ==========================================================
+   JAIWA Team
+   File : assets/css/main.css
+   Purpose : Shared Components
+   Version : 1.0
+========================================================== */
+
+/*Buttons*/
+
+.btn{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:10px;
+
+    padding:14px 28px;
+
+    border-radius:var(--radius-md);
+
+    font-size:var(--text-md);
+
+    font-weight:var(--fw-semibold);
+
+    transition:var(--transition);
+
+    cursor:pointer;
+
+}
+
+.btn-primary{
+
+    color:#fff;
+
+    background:var(--primary-500);
+
+    box-shadow:0 6px 20px rgba(47,128,237,.2);
+
+    border:1px solid rgba(255,255,255,0.4);
+
+    backdrop-filter:blur(10px);
+
+    -webkit-backdrop-filter:blur(10px);
+
+}
+
+.btn-primary:hover{
+
+    background:var(--primary-600);
+
+    transform:translateY(-3px);
+
+    box-shadow:0 10px 25px rgba(47,128,237,.3);
+
+}
+
+.btn-secondary{
+
+    color:var(--text-primary);
+
+    background:rgba(255,255,255,0.2);
+
+    border:1px solid rgba(255,255,255,0.4);
+
+    backdrop-filter:blur(10px);
+
+    -webkit-backdrop-filter:blur(10px);
+
+    box-shadow:0 4px 10px rgba(0,0,0,.05);
+
+}
+
+.btn-secondary:hover{
+
+    background:rgba(255,255,255,0.4);
+
+    transform:translateY(-3px);
+
+    box-shadow:0 8px 15px rgba(0,0,0,.1);
+
+}
+
+/* Cards */
+
+.card{
+
+    background:rgba(255,255,255,0.2);
+
+    border:1px solid rgba(255,255,255,0.4);
+
+    backdrop-filter:blur(20px);
+
+    -webkit-backdrop-filter:blur(20px);
+
+    border-radius:var(--radius-xl);
+
+    padding:30px;
+
+    box-shadow:0 8px 25px rgba(0,0,0,.08);
+
+    transition:var(--transition);
+
+}
+
+.card:hover{
+
+    transform:translateY(-7px);
+
+    box-shadow:0 15px 35px rgba(0,0,0,.12);
+
+}
+
+
+/*Badge */
+
+.badge{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    padding:6px 14px;
+
+    border-radius:999px;
+
+    background:rgba(47,128,237,0.1);
+
+    border:1px solid rgba(47,128,237,0.3);
+
+    backdrop-filter:blur(5px);
+
+    -webkit-backdrop-filter:blur(5px);
+
+    color:var(--primary-700);
+
+    font-size:var(--text-sm);
+
+    font-weight:var(--fw-semibold);
+
+    box-shadow:0 1px 4px rgba(0,0,0,.03);
+
+}
+
+
+/* Section Heading */
+
+.section-header{
+
+    margin-bottom:60px;
+
+    text-align:center;
+
+}
+
+.section-title{
+
+    font-family: "Playfair", serif; /* Apply Playfair font */
+
+    font-size:clamp(2rem,5vw,3rem);
+
+    font-weight:var(--fw-extrabold);
+
+    color:var(--text-primary);
+
+}
+
+.section-subtitle{
+
+    max-width:700px;
+
+    margin:18px auto 0;
+
+    color:var(--text-secondary);
+
+    font-size:var(--text-lg);
+
+}
+
+
+/* Grid */
+
+.grid{
+
+    display:grid;
+
+    gap:30px;
+
+}
+
+.grid-2{
+
+    grid-template-columns:repeat(2,1fr);
+
+}
+
+.grid-3{
+
+    grid-template-columns:repeat(3,1fr);
+
+}
+
+.grid-4{
+
+    grid-template-columns:repeat(4,1fr);
+
+}
+
+
+/* Flex Helpers */
+
+.flex{
+
+    display:flex;
+
+}
+
+.items-center{
+
+    align-items:center;
+
+}
+
+.justify-between{
+
+    justify-content:space-between;
+
+}
+
+.justify-center{
+
+    justify-content:center;
+
+}
+
+.gap-10{
+
+    gap:10px;
+
+}
+
+.gap-20{
+
+    gap:20px;
+
+}
+
+
+/* Wrapper */
+
+.wrapper{
+
+    padding-top:var(--header-height);
+
+}
+
+
+/* Text*/
+
+.text-primary{
+
+    color:var(--text-primary);
+
+}
+
+.text-secondary{
+
+    color:var(--text-secondary);
+
+}
+
+.text-center{
+
+    text-align:center;
+
+}
+
+
+/* Margin Helpers*/
+
+.mt-20{
+
+    margin-top:20px;
+
+}
+
+.mt-40{
+
+    margin-top:40px;
+
+}
+
+.mb-20{
+
+    margin-bottom:20px;
+
+}
+
+.mb-40{
+
+    margin-bottom:40px;
+
+}
+
+
+/* Responsive */
+
+@media(max-width:992px){
+
+    .grid-4{
+
+        grid-template-columns:repeat(2,1fr);
+
+    }
+
+    .grid-3{
+
+        grid-template-columns:repeat(2,1fr);
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    .grid-2,
+    .grid-3,
+    .grid-4{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .btn{
+
+        width:100%;
+
+    }
+
+    .section-header{
+
+        margin-bottom:40px;
+
+    }
+
+}

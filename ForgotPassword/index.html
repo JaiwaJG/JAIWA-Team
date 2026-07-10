@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Forgot Password | JAIWA Team</title>
+
+    <!-- Google Font -->
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <!-- Font Awesome -->
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <!-- CSS -->
+
+    <link rel="stylesheet" href="../assets/css/variables.css">
+    <link rel="stylesheet" href="../assets/css/reset.css">
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/auth.css">
+    <link rel="stylesheet" href="../assets/css/forgot-password.css">
+
+</head>
+
+<body>
+
+<div class="particles"></div>
+
+<main class="auth-container">
+
+    <!-- Logo -->
+
+    <div class="auth-logo">
+
+        <img
+            src="../assets/images/logo.png"
+            alt="JAIWA Team">
+
+    </div>
+
+
+    <!-- Header -->
+
+    <header class="auth-header">
+
+        <h1>
+
+            Forgot Password
+
+        </h1>
+
+        <p>
+
+            Enter your email address and we'll send
+            you an 8-character password reset code.
+
+        </p>
+
+    </header>
+
+
+    <!-- Form -->
+
+    <form
+        id="forgotPasswordForm"
+        class="auth-form">
+
+        <div class="input-group">
+
+            <label for="email">
+
+                Email Address
+
+            </label>
+
+            <div class="input-wrapper">
+
+                <svg class="input-icon"
+                     xmlns="http://www.w3.org/2000/svg"
+                     fill="none"
+                     viewBox="0 0 24 24"
+                     stroke="currentColor">
+
+                    <path stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M3 8l9 6 9-6"/>
+
+                    <rect x="3"
+                          y="5"
+                          width="18"
+                          height="14"
+                          rx="2"/>
+
+                </svg>
+
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="Enter your email"
+                    required>
+
+            </div>
+
+        </div>
+
+
+        <button
+            type="submit"
+            class="btn-submit">
+
+            Send Reset Code
+
+        </button>
+
+    </form>
+
+
+    <div class="auth-footer">
+
+        <a href="../Login/">
+
+            ← Back to Login
+
+        </a>
+
+    </div>
+
+</main>
+
+<script src="../assets/js/auth.js"></script>
+
+<script src="../assets/js/forgot-password.js"></script>
+
+</body>
+
+</html>

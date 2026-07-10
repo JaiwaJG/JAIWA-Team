@@ -1,0 +1,226 @@
+/* ==========================================================
+   JAIWA TEAM
+   File : assets/css/login.css
+   Purpose : Login Page Only
+========================================================== */
+
+
+/* ===============================
+   Login Header
+================================ */
+
+.auth-header{
+
+    margin-bottom:34px;
+
+}
+
+.auth-header h1{
+
+    line-height:1.15;
+
+}
+
+.auth-header p{
+
+    max-width:260px;
+
+    margin:10px auto 0;
+
+}
+
+
+/* ===============================
+   Login Form
+================================ */
+
+.auth-form{
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+
+/* ===============================
+   Remember Me
+================================ */
+
+.remember-me{
+
+    user-select: none;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    font-size:14px;
+
+    font-weight:500;
+
+    color:var(--text-light);
+
+}
+
+.remember-me input{
+
+    cursor:pointer;
+
+}
+
+
+/* ===============================
+   Forgot Password
+================================ */
+
+.forgot-password{
+
+    font-size:14px;
+
+    font-weight:600;
+
+}
+
+.forgot-password:hover{
+
+    text-decoration:underline;
+
+}
+
+
+/* ===============================
+   Login Button
+================================ */
+
+.btn-submit{
+
+    margin-top:8px;
+
+}
+
+.btn-submit:hover{
+
+    transform:translateY(-2px);
+
+}
+
+
+/* ===============================
+   Social Login
+================================ */
+
+.social-login{
+
+    margin-top:4px;
+
+}
+
+.btn-social{
+
+    font-size:15px;
+
+    font-weight:600;
+
+}
+
+.btn-social:active{
+
+    transform:scale(.98);
+
+}
+
+
+/* ===============================
+   Footer
+================================ */
+
+.auth-footer{
+
+    margin-top:32px;
+
+}
+
+.auth-footer a{
+
+    margin-left:4px;
+
+}
+
+
+/* ===============================
+   Login Animation
+================================ */
+
+.auth-container{
+
+    animation:loginFade .45s ease;
+
+}
+
+@keyframes loginFade{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(18px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:none;
+
+    }
+
+}
+
+
+/* ===============================
+   Desktop Polish
+================================ */
+
+@media(min-width:992px){
+
+    .auth-container{
+
+        transition:.28s;
+
+    }
+
+    .auth-container:hover{
+
+        transform:translateY(-3px);
+
+        box-shadow:
+        0 28px 60px rgba(0,0,0,.09);
+
+    }
+
+}
+
+
+/* ===============================
+   Mobile
+================================ */
+
+@media(max-width:480px){
+
+    .options-row{
+
+        gap:12px;
+
+    }
+
+    .forgot-password{
+
+        font-size:13px;
+
+    }
+
+}
