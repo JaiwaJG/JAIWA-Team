@@ -434,7 +434,7 @@ nav {
   box-shadow: 0 12px 25px rgba(0, 0, 0, 0.18);
 }
 
-/* Copy Button */
+/* Copy Button*/
 .copy-btn {
   display: inline-block;
   padding: 10px 20px;
@@ -452,6 +452,23 @@ nav {
   transform: translateY(-2px) scale(1.05);
   box-shadow: 0 12px 25px rgba(0, 0, 0, 0.18);
 }
+/*
+.copy-btn {
+  padding: 2.5rem;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.06);
+  border-radius: 24px;
+  margin-bottom: 2rem;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.copy-btn:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
+}*/
 
 
 
