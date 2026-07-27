@@ -315,6 +315,62 @@ nav {
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
 }
 
+/* VPN Service Card Specific Styles */
+.vpn-card {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(12px) saturate(150%);
+  -webkit-backdrop-filter: blur(12px) saturate(150%);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  padding: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.vpn-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+}
+
+.vpn-badge {
+  background: #28a745;
+  color: #fff;
+  font-size: 0.8rem;
+  padding: 2px 6px;
+  border-radius: 8px;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+
+.vpn-features {
+  list-style: none;
+  padding: 0;
+  margin: 12px 0;
+  text-align: left;
+}
+
+.vpn-features li {
+  margin: 6px 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.premium-btn {
+  border: 2px solid #5f8190;
+  background: transparent;
+  color: #5f8190;
+  transition: all 0.3s ease;
+}
+
+.premium-btn:hover {
+  background: #5f8190;
+  color: #fff;
+  box-shadow: 0 0 8px #5f8190;
+}
+
 .resources-cards p {
   font-size: 14px;
   margin-bottom: 15px;
