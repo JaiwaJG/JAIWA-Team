@@ -4,94 +4,925 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Speed Test | Jaiwa Team</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #0f172a;
-            color: #fff;
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
+            background: radial-gradient(circle at 10% 20%, #1e1b4b 0%, #0f172a 50%, #020617 100%);
+            color: #f8fafc;
+            overflow-x: hidden;
+            position: relative;
         }
-        .container {
-            background: #1e293b;
-            padding: 2rem;
-            border-radius: 16px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-            text-align: center;
+
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: 1;
+            opacity: 0.6;
+        }
+        .orb-1 { width: 300px; height: 300px; background: #6366f1; top: 15%; left: 20%; }
+        .orb-2 { width: 350px; height: 350px; background: #ec4899; bottom: 15%; right: 20%; }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(25px) saturate(200%);
+            -webkit-backdrop-filter: blur(25px) saturate(200%);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-top: 1px solid rgba(255, 255, 255, 0.25);
+            border-left: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 32px;
+            padding: 3rem 2rem;
             width: 90%;
-            max-width: 400px;
+            max-width: 500px;
+            text-align: center;
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            position: relative;
+            z-index: 10;
+            overflow: hidden; /* clip modal overlay to card bounds */
         }
-        h1 { margin-bottom: 0.5rem; color: #38bdf8; font-size: 1.8rem; }
-        p { color: #94a3b8; margin-bottom: 2rem; font-size: 0.9rem; }
-        .gauge {
-            font-size: 2.5rem;
-            font-weight: bold;
-            color: #4ade80;
+
+        .brand-logo { font-size: 0.9rem; letter-spacing: 4px; color: rgba(255,255,255,0.6); font-weight: 700; margin-bottom: 0.5rem; }
+        .tagline { font-size: 1.1rem; color: rgba(255,255,255,0.8); margin-bottom: 1.5rem; }
+
+        .speed-box {
+            display: flex;
+            align-items: baseline;
+            justify-content: center;
             margin: 1.5rem 0;
+            position: relative;
         }
-        button {
-            background: #2563eb;
-            color: white;
+
+        .number {
+            font-size: 5.5rem;
+            font-weight: 800;
+            line-height: 1;
+            letter-spacing: -2px;
+            color: #ffffff;
+            transition: color 0.3s ease;
+        }
+
+        .number.testing {
+            background: linear-gradient(180deg, #ffffff 40%, #a5b4fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .number.finished {
+            background: none;
+            -webkit-text-fill-color: initial;
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .unit-box {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-left: 10px;
+            /* Fixed container to keep unit and button together */
+        }
+        #numDisplay {
+            min-width: 180px;
+            display: inline-block;
+            text-align: right;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .unit { font-size: 1.8rem; font-weight: 700; color: rgba(255, 255, 255, 0.5); }
+        
+        .action-icon-btn {
+            position: relative;
+            width: 38px;
+            height: 38px;
+            background: none;
             border: none;
-            padding: 12px 28px;
-            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.1rem;
+            cursor: pointer;
+            outline: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .action-icon-btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border: 2px solid transparent;
+            border-top-color: #6366f1;
+            border-radius: 50%;
+        }
+        .action-icon-btn.testing::before {
+            animation: spinRing 1.2s linear infinite;
+        }
+        .action-icon-btn.finished::before {
+            border: 2px solid #22c55e;
+            border-radius: 50%;
+            animation: none;
+        }
+        .action-icon-btn.finished {
+            color: #22c55e;
+        }
+        @keyframes spinRing {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .action-icon-btn:hover::before {
+            border-color: #fff;
+        }
+        .action-icon-btn:hover, .action-icon-btn:focus { 
+            color: #fff; 
+            background: transparent !important;
+            outline: none;
+            border-color: transparent;
+        }
+
+        .more-info-container {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0, 1, 0, 1);
+            margin-top: 1rem;
+        }
+        #moreInfo {
+            width: 100%;
+            text-align: left;
+        }
+        .info-grid {
+            display: grid !important;
+            grid-template-columns: 1fr 1fr !important;
+            gap: 16px !important;
+            width: 100% !important;
+        }
+        .full-width {
+            grid-column: 1 / -1;
+        }
+
+        .more-info-container.open {
+            max-height: 300px;
+            transition: max-height 0.5s ease-in-out;
+        }
+
+        .grid-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: left;
+        }
+
+        .stat-item .label { font-size: 0.8rem; color: rgba(255,255,255,0.5); margin-bottom: 4px; }
+        .stat-item .val { font-size: 1.2rem; font-weight: 700; color: #fff; }
+
+        /* Show More Button Styling */
+        /* Removed malformed duplicate save button styling block */
+
+        /* Test လုပ်နေစဉ် ခလုတ်နှိပ်မရသည့် ပုံစံ */
+        .btn-toggle:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+            border-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .hidden { display: none; }
+        .settings-icon {
+            width: 38px;
+            height: 38px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: transform 0.3s, border-color 0.3s, color 0.3s;
+            color: rgba(255,255,255,0.6);
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+        }
+        .settings-icon:hover {
+            transform: rotate(90deg);
+            border-color: #fff;
+            color: #fff;
+        }
+        /* Modal overlay for settings */
+        .modal {
+            display: none; /* hidden by default */
+            position: fixed; /* overlay covers viewport */
+            inset: 0;
+            background: rgba(0, 0, 0, 0.7) !important;
+            backdrop-filter: blur(20px) !important;
+            -webkit-backdrop-filter: blur(20px) !important;
+            z-index: 9999 !important;
+            overflow: hidden;
+        }
+        .modal:not(.hidden) {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-content {
+            width: 360px;
+            padding: 28px;
+            border-radius: 16px;
+            background: rgba(15, 23, 42, 0.95);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+            color: #fff;
+            position: relative;
+            text-align: left;
+        }
+        .modal-content label {
+            color: #fff;
+            font-size: 0.9rem;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        #ispInfo {
+            font-size: 0.85rem;
+            line-height: 1.2;
+            font-weight: 600;
+        }
+        #clientIp {
+            font-family: "Courier New", Courier, monospace;
+        }
+        .modal-content select {
+            background: rgba(255, 255, 255, 0.1) !important;
+            color: #ffffff !important;
+            border: 1px solid rgba(255, 255, 255, 0.2) !important;
             border-radius: 8px;
+            padding: 8px 12px;
+            width: 100%;
+            outline: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+        .modal-content select option {
+            background: #0f172a !important;
+            color: #ffffff !important;
+        }
+        /* Global removal of default number input spinners and styling */
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none !important;
+            margin: 0 !important;
+        }
+        input[type=number] {
+            -moz-appearance: textfield !important;
+            appearance: textfield !important;
+            background: rgba(255, 255, 255, 0.08) !important;
+            color: #ffffff !important;
+            border: 1px solid rgba(255, 255, 255, 0.2) !important;
+            border-radius: 8px !important;
+            padding: 6px 12px !important;
+            text-align: center !important;
+        }
+        /* Hide native number input spinners for all browsers */
+        .modal-content input[type="number"]::-webkit-inner-spin-button,
+        .modal-content input[type="number"]::-webkit-outer-spin-button,
+        .modal-content input[type="number"]::-moz-inner-spin-button,
+        .modal-content input[type="number"]::-moz-outer-spin-button {
+            background: transparent !important;
+            background-color: transparent !important;
+            filter: invert(1) brightness(0.8);
+            opacity: 0.6;
+            cursor: pointer;
+        }
+        .stepper-controls {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .modal-content input[type="checkbox"] {
+            width: auto;
+            height: auto;
+        /* Removed old save button styling – using full-width version defined later */
+            background: rgba(255,255,255,0.08);
+        }
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 32px;
+            height: 32px;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 50%;
+            color: #fff;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             cursor: pointer;
             transition: 0.3s;
         }
-        button:hover { background: #1d4ed8; }
-        button:disabled { background: #475569; cursor: not-allowed; }
+        .close-modal:hover {
+            background: rgba(255,255,255,0.12);
+        }
+        .modal-content input[type="number"], .modal-content input[type="checkbox"] {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.3);
+            color: #fff;
+            border-radius: 8px;
+            padding: 0.4rem;
+            margin: 0;
+        }
+        .modal-content input[type="checkbox"] {
+            width: auto;
+            height: auto;
+        }
+        /* Task progress checklist */
+        /*
+        - [x] Analyze requirements
+        - [x] Update index.html with Fast.com style UI and functionality
+        - [x] Apply layout fixes for speed display
+        - [x] Implement animated spinner ring for pause button
+        - [x] Enhance settings modal backdrop blur
+        - [x] Redesign "Show More Info" panel to horizontal grid layout
+        - [x] Apply number input spinner CSS fix and strengthen modal blur
+        - [x] Remove default number input spinners globally
+        - [x] Implement 30-second default duration limit
+        - [x] Add Settings gear icon and modal with options (duration, connections, upload toggle) and persist to localStorage
+        - [x] Implement live testing on page load with rolling numbers
+        - [x] Add Pause button that stops test and locks speed
+        - [x] Change Pause to Retest after finish, dim number, enable Show More Info
+        - [x] Disable Show More Info button during test, enable after
+        - [x] Display latency unloaded and loaded
+        - [x] Display upload speed if enabled
+        - [x] Show client IP and ISP info
+        - [x] Show total data used
+        - [x] Maintain glassmorphism card aesthetic with gradient background and orbs
+        - [x] Ensure responsive layout
+        - [x] Implement custom dropdown behavior and sync with saved settings
+        - [x] Ensure number input spinners removed globally
+        - [x] Add CSS enhancements for modal blur and dropdown styling
+        - [x] Fix Settings Card UI
+        - [x] Style Show More Info and Save buttons
+        - [x] Remove erroneous CSS from JS
+        */
     </style>
 </head>
 <body>
 
-<div class="container">
-    <h1>Speed Test</h1>
-    <p>Jaiwa Team Subdomain Test</p>
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
 
-    <div class="gauge" id="speedDisplay">0.00 <span style="font-size: 1rem;">Mbps</span></div>
+    <div class="glass-card" id="mainCard">
+    <div class="brand-logo">JAIWA TEAM</div>
+    <div class="tagline">Your Internet speed is</div>
 
-    <button id="startBtn" onclick="runSpeedTest()">Test Speed</button>
+    <div class="speed-box">
+        <span class="number testing" id="numDisplay">0</span>
+        <div class="unit-box">
+            <span class="unit" id="unitDisplay">Mbps</span>
+        <button class="action-icon-btn" id="actionBtn" onclick="handleActionClick()" title="Pause">⏸</button>
+        </div>
+    </div>
+    <!-- Settings icon (classic minimalist SVG gear) positioned top‑right inside the glass card -->
+    <span class="settings-icon" id="settingsIcon" title="Settings">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5zm7.43-2.5c.04-.33.07-.66.07-1s-.03-.67-.07-1l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65A.487.487 0 0014.5 3h-4c-.28 0-.5.22-.5.5l-.38 2.65c-.61.25-1.17.58-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.5.12.64L4.57 11c-.04.33-.07.66-.07 1s.03.67.07 1l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.28.25.5.5.5h4c.28 0 .5-.22.5-.5l.38-2.65c.61-.25 1.17-.58 1.69-.98l2.49 1c.23.09.49 0 .61-.22l2-3.46c.13-.22.07-.5-.12-.64L19.43 13z"/>
+        </svg>
+    </span>
+
+    <!-- Disabled by default while testing -->
+    <button class="btn-toggle show-more-btn" id="toggleBtn" onclick="toggleMoreInfo()" disabled>Show more info</button>
+
+    <!-- Settings Modal (hidden by default) -->
+    <div id="settingsModal" class="modal hidden">
+        <div class="modal-content">
+            <h4 style="margin:0 0 0.5rem 0;">Settings</h4>
+            <label class="setting-row">
+                <span>Test Duration (seconds):</span>
+                <select id="durationSelect">
+                    <option value="5">5 seconds</option>
+                    <option value="10">10 seconds</option>
+                    <option value="15">15 seconds</option>
+                    <option value="30">30 seconds</option>
+                    <option value="60">60 seconds</option>
+                </select>
+            </label>
+            <label class="setting-row">
+                <span>Parallel Connections:</span>
+                <select id="connectionsSelect">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="4">4</option>
+                    <option value="8">8</option>
+                </select>
+            </label>
+            <label class="setting-row" style="justify-content: flex-start;">
+                <span>Measure Upload Speed:</span>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="uploadToggle" title="Measure Upload Speed">
+                    <span class="slider"></span>
+                </label>
+            </label>
+        <button id="saveSettings" class="save-btn" title="Save Settings">Save</button>
+        <button id="closeSettings" class="close-modal" title="Close Settings">✖</button>
+        </div>
+    </div>
+
+    <div class="more-info-container" id="moreInfo">
+        <!-- Top Grid: Latency & Upload -->
+        <div class="info-grid" style="display:flex; gap:2rem;">
+        <div class="left-col" style="flex:1;">
+            <div class="section-header" style="font-size:0.9rem; font-weight:700; color:rgba(255,255,255,0.6); margin-bottom:0.5rem; text-align:left;">Latency</div>
+        <div class="latency-values" style="display:flex; gap:2rem; justify-content:center;">
+            <div class="latency-item" style="text-align:left;">
+                <div class="sub-header" style="font-size:0.8rem; color:rgba(255,255,255,0.6); margin-bottom:0.2rem; text-align:left;">Unloaded</div>
+                <div class="value-unit" style="display:inline-flex; align-items:baseline; gap:0.2rem;">
+                    <span class="value" id="latencyUnloadedVal" style="font-size:1.6rem; font-weight:700;">--</span>
+                    <span class="unit" style="font-size:0.8rem; color:rgba(255,255,255,0.6);">ms</span>
+                </div>
+            </div>
+            <div class="latency-item" style="text-align:left;">
+                <div class="sub-header" style="font-size:0.8rem; color:rgba(255,255,255,0.6); margin-bottom:0.2rem; text-align:left;">Loaded</div>
+                <div class="value-unit" style="display:inline-flex; align-items:baseline; gap:0.2rem;">
+                    <span class="value" id="latencyLoadedVal" style="font-size:1.6rem; font-weight:700;">--</span>
+                    <span class="unit" style="font-size:0.8rem; color:rgba(255,255,255,0.6);">ms</span>
+                </div>
+            </div>
+        </div>
+            </div>
+            <div class="right-col" style="flex:1; display:flex; flex-direction:column; align-items:flex-start;">
+                <div class="section-header" style="font-size:0.9rem; font-weight:700; color:rgba(255,255,255,0.6); margin-bottom:0.5rem; text-align:left;">Upload</div>
+        <div class="upload-value" style="text-align:left;">
+            <div class="sub-header" style="font-size:0.8rem; color:rgba(255,255,255,0.6); margin-bottom:0.2rem; text-align:left;">Speed</div>
+            <div class="value-unit" style="display:inline-flex; align-items:baseline; gap:0.2rem;">
+                <span class="value" id="uploadSpeedVal" style="font-size:1.6rem; font-weight:700;">--</span>
+                <span class="unit" style="font-size:0.8rem; color:rgba(255,255,255,0.6);">Mbps</span>
+            </div>
+        </div>
+            </div>
+        </div>
+        <!-- Adjusted divider spacing for better breathing room -->
+        <div class="divider" style="height:1px; background:rgba(255,255,255,0.2); margin-top:14px; margin-bottom:12px;"></div>
+        <!-- Client & Server Row -->
+        <div class="client-server-row" style="display:flex; justify-content:space-between; font-size:0.85rem; color:rgba(255,255,255,0.8);">
+            <div class="client-info" id="clientInfo">Client: Loading…</div>
+            <div class="server-info" id="serverInfo">Server(s): Loading…</div>
+        </div>
+        <!-- Data Transfer Row (Upload aligned left under Upload Speed column) -->
+        <div class="data-row" style="display:flex; justify-content:space-between; margin-top:0.6rem; font-size:0.85rem; color:rgba(255,255,255,0.8);">
+            <div class="download-data" id="downloadData">-- MB ⬇</div>
+            <!-- Shifted upload MB text leftwards for alignment under Upload Speed column -->
+            <div class="upload-data" id="uploadData" style="margin-left:-20px;">-- MB ⬆</div>
+        </div>
+        <!-- Additional stats such as total data used -->
+        <div class="grid-stats" id="statsContainer"></div>
+    </div>
 </div>
 
 <script>
+/*** Speed Test Core Logic ***/
+let isTesting = false;
+let abortController = null;
+let animInterval = null;
+let timerId = null;
+
+// Load persisted settings or defaults
+const defaultSettings = { duration: 30, connections: 4, upload: false };
+let settings = { ...defaultSettings, ...(JSON.parse(localStorage.getItem('speedTestSettings') || '{}')) };
+
+// Global counters for data usage
+let totalDownloadedBytes = 0;
+let totalUploadedBytes = 0;
+
+window.addEventListener('DOMContentLoaded', () => {
+    fetchClientInfo();
+    applySettingsToUI();
+    runSpeedTest();
+    initSettingsPanel();
+});
+
+function applySettingsToUI() {
+    const durationSelect = document.getElementById('durationSelect');
+    const connectionsSelect = document.getElementById('connectionsSelect');
+    const uploadToggle = document.getElementById('uploadToggle');
+    if (durationSelect) durationSelect.value = settings.duration;
+    if (connectionsSelect) connectionsSelect.value = settings.connections;
+    if (uploadToggle) uploadToggle.checked = settings.upload;
+    // No custom dropdowns needed – standard <select> elements reflect settings directly
+}
+
+function initSettingsPanel() {
+    const settingsIcon = document.getElementById('settingsIcon');
+    const settingsModal = document.getElementById('settingsModal');
+    const saveBtn = document.getElementById('saveSettings');
+    const closeBtn = document.getElementById('closeSettings');
+    const durationSelect = document.getElementById('durationSelect');
+    const connectionsSelect = document.getElementById('connectionsSelect');
+    const uploadToggle = document.getElementById('uploadToggle');
+
+    // Toggle modal visibility
+    settingsIcon.addEventListener('click', () => {
+        settingsModal.classList.toggle('hidden');
+    });
+
+    // Save settings and close modal
+    saveBtn.addEventListener('click', () => {
+        const newSettings = {
+            duration: parseInt(durationSelect.value) || 30,
+            connections: parseInt(connectionsSelect.value) || 4,
+            upload: uploadToggle.checked
+        };
+        localStorage.setItem('speedTestSettings', JSON.stringify(newSettings));
+        settings = newSettings;
+        settingsModal.classList.add('hidden');
+    });
+
+    // Close modal without saving
+    closeBtn.addEventListener('click', () => {
+        settingsModal.classList.add('hidden');
+    });
+
+    // Initialize custom glass dropdowns
+    initCustomDropdowns();
+    // No custom steppers needed for dropdowns
+}
+
+/** Initialize custom dropdown behavior */
+function initCustomDropdowns() {
+    const dropdowns = document.querySelectorAll('.custom-dropdown');
+    dropdowns.forEach(dd => {
+        const toggle = dd.querySelector('.dropdown-toggle');
+        const menu = dd.querySelector('.dropdown-menu');
+        const hiddenSelect = dd.parentElement.querySelector('select');
+        // Toggle open/close
+        toggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isOpen = menu.classList.toggle('open');
+            toggle.classList.toggle('open', isOpen);
+        });
+        // Option selection
+        menu.querySelectorAll('li').forEach(li => {
+            li.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const value = li.getAttribute('data-value');
+                const label = li.textContent;
+                // Update displayed selected value
+                const selectedSpan = toggle.querySelector('.selected-value');
+                if (selectedSpan) selectedSpan.textContent = label;
+                // Update hidden native select if present
+                if (hiddenSelect) hiddenSelect.value = value;
+                // Close menu
+                menu.classList.remove('open');
+                toggle.classList.remove('open');
+            });
+        });
+    });
+    // Close any open dropdown when clicking outside
+    document.addEventListener('click', () => {
+        document.querySelectorAll('.custom-dropdown .dropdown-menu.open').forEach(openMenu => {
+            openMenu.classList.remove('open');
+            const parent = openMenu.closest('.custom-dropdown');
+            if (parent) {
+                const toggleBtn = parent.querySelector('.dropdown-toggle');
+                if (toggleBtn) toggleBtn.classList.remove('open');
+            }
+        });
+    });
+}
+
+function handleActionClick() {
+    if (isTesting) {
+        stopSpeedTest();
+    } else {
+        runSpeedTest();
+    }
+}
+
+// Fetch client IP and location with robust fallback
+function fetchClientInfo() {
+    // First try ipapi.co (CORS friendly)
+    fetch('https://ipapi.co/json/')
+        .then(res => res.json())
+        .then(info => {
+            const ip = info.ip || '';
+            const city = info.city || '';
+            const country = info.country_code || '';
+            const location = city && country ? `${city}, ${country}` : '';
+            const clientText = location ? `Client ${location} ${ip}` : `Client ${ip}`;
+            document.getElementById('clientInfo').innerText = clientText;
+            document.getElementById('serverInfo').innerText = location ? `Server(s) ${location}` : 'Server(s)';
+        })
+        .catch(() => {
+            // Fallback to Cloudflare trace
+            fetch('https://speed.cloudflare.com/cdn-cgi/trace')
+                .then(r => r.text())
+                .then(txt => {
+                    const lines = txt.split('\n');
+                    const ipLine = lines.find(l => l.startsWith('ip=')) || '';
+                    const locLine = lines.find(l => l.startsWith('loc=')) || '';
+                    const ip = ipLine.split('=')[1] || '';
+                    const loc = locLine.split('=')[1] || '';
+                    const clientText = ip ? `Client ${loc} ${ip}` : 'Client Unavailable';
+                    document.getElementById('clientInfo').innerText = clientText;
+                    document.getElementById('serverInfo').innerText = loc ? `Server(s) ${loc}` : 'Server(s) Unavailable';
+                })
+                .catch(() => {
+                    document.getElementById('clientInfo').innerText = 'Client Unavailable';
+                    document.getElementById('serverInfo').innerText = 'Server(s) Unavailable';
+                });
+        });
+}
+
 async function runSpeedTest() {
-    const btn = document.getElementById('startBtn');
-    const display = document.getElementById('speedDisplay');
-    
-    btn.disabled = true;
-    btn.innerText = "Measuring...";
-    display.innerHTML = `Measuring...`;
+    isTesting = true;
+    const numDisplay = document.getElementById('numDisplay');
+    const unitDisplay = document.getElementById('unitDisplay');
+    const actionBtn = document.getElementById('actionBtn');
+    const toggleBtn = document.getElementById('toggleBtn');
 
-    // 10MB test file for downloading
-    const testFileUrl = "https://speed.cloudflare.com/__down?bytes=10000000"; 
-    const startTime = new Date().getTime();
+    // UI reset
+    numDisplay.className = "number testing";
+    actionBtn.innerText = "⏸";
+    actionBtn.title = "Pause";
+    actionBtn.classList.remove('finished');
+    actionBtn.classList.add('testing');
+    toggleBtn.disabled = true;
 
-    try {
-        const response = await fetch(testFileUrl + "&cacheBust=" + startTime);
-        const reader = response.body.getReader();
-        let receivedBytes = 0;
+    // Close info panel if open
+    const infoContainer = document.getElementById('moreInfo');
+    if (infoContainer.classList.contains('open')) {
+        infoContainer.classList.remove('open');
+        toggleBtn.innerText = "Show more info";
+    }
 
-        while(true) {
-            const {done, value} = await reader.read();
-            if (done) break;
-            receivedBytes += value.length;
+    // Measure unloaded latency BEFORE download starts
+    const unloadedLatency = await measureUnloadedLatency();
+    document.getElementById('latencyUnloadedVal').innerText = `${unloadedLatency.toFixed(1)}`;
+
+    // Reset other stats
+    document.getElementById('latencyLoadedVal').innerText = "--";
+    document.getElementById('uploadSpeedVal').innerText = "--";
+    document.getElementById('downloadData').innerText = "-- MB ⬇";
+    document.getElementById('uploadData').innerText = "-- MB ⬆";
+
+    // Reset global counters
+    totalDownloadedBytes = 0;
+    totalUploadedBytes = 0;
+
+    abortController = new AbortController();
+
+    const testPayloads = [
+        "https://speed.cloudflare.com/__down?bytes=2000000",
+        "https://speed.cloudflare.com/__down?bytes=5000000",
+        "https://speed.cloudflare.com/__down?bytes=10000000"
+    ];
+
+    let totalBytes = 0;
+    const startTime = performance.now();
+    let targetSpeed = 0;
+    let currentAnimatedSpeed = 0;
+
+    // Animation loop for smooth number updates
+        animInterval = setInterval(() => {
+            if (!isTesting) return;
+            const diff = targetSpeed - currentAnimatedSpeed;
+            if (Math.abs(diff) > 0.01) {
+                currentAnimatedSpeed += diff * 0.15;
+            } else {
+                currentAnimatedSpeed = targetSpeed;
+            }
+            if (currentAnimatedSpeed < 1 && currentAnimatedSpeed > 0) {
+                numDisplay.innerText = Math.round(currentAnimatedSpeed * 1024);
+                unitDisplay.innerText = 'Kbps';
+            } else {
+                numDisplay.innerText = currentAnimatedSpeed.toFixed(1);
+                unitDisplay.innerText = 'Mbps';
+            }
+        }, 50);
+
+    // Duration timeout
+    timerId = setTimeout(() => {
+        stopSpeedTest();
+    }, settings.duration * 1000);
+
+    // Parallel fetch workers based on connections setting
+    const queue = testPayloads.map(u => u + "&t=" + Date.now());
+    async function worker() {
+        while (queue.length && isTesting) {
+            const url = queue.shift();
+            try {
+                const response = await fetch(url, { cache: "no-store", signal: abortController.signal });
+                const reader = response.body.getReader();
+                while (true) {
+                    if (!isTesting) break;
+                    const { done, value } = await reader.read();
+                    if (done) break;
+                    totalBytes += value.length;
+                    totalDownloadedBytes += value.length;
+                    // Update download data display in real time
+                    const downloadElem = document.getElementById('downloadData');
+                    if (downloadElem) {
+                        const mb = (totalDownloadedBytes / (1024 * 1024)).toFixed(1);
+                        downloadElem.innerText = `${mb} MB ⬇`;
+                    }
+                    const now = performance.now();
+                    const dur = (now - startTime) / 1000;
+                    if (dur > 0.1) {
+                        targetSpeed = ((totalBytes * 8) / dur) / 1000000;
+                    }
+                }
+            } catch (e) {
+                // ignore abort errors
+            }
         }
+    }
+    const workers = [];
+    for (let i = 0; i < settings.connections; i++) workers.push(worker());
+    await Promise.all(workers);
 
-        const endTime = new Date().getTime();
-        const durationInSeconds = (endTime - startTime) / 1000;
-        const bitsLoaded = receivedBytes * 8;
-        const speedMbps = ((bitsLoaded / durationInSeconds) / (1024 * 1024)).toFixed(2);
+    if (isTesting) {
+        const finalDuration = (performance.now() - startTime) / 1000;
+        const finalMbps = ((totalBytes * 8) / finalDuration) / 1000000;
+        if (settings.upload) {
+            await performUploadTest(finalMbps, totalBytes);
+        } else {
+            await finishTest(finalMbps, totalBytes);
+        }
+    // Measure loaded latency after test completes
+    const loadedLatency = await measureLatency();
+    document.getElementById('latencyLoadedVal').innerText = `${loadedLatency.toFixed(1)}`;
+    }
+}
 
-        display.innerHTML = `${speedMbps} <span style="font-size: 1rem;">Mbps</span>`;
-    } catch (error) {
-        display.innerHTML = `<span style="color: #ef4444; font-size: 1rem;">Error testing speed</span>`;
-    } finally {
-        btn.disabled = false;
-        btn.innerText = "Test Speed Again";
+// Simple latency measurement using a lightweight fetch (used for loaded latency)
+async function measureLatency() {
+    const start = performance.now();
+    try {
+        await fetch('https://www.cloudflare.com/cdn-cgi/trace', { cache: 'no-store' });
+    } catch (e) {
+        // ignore errors, still calculate elapsed time
+    }
+    return (performance.now() - start);
+}
+
+// Measure unloaded latency before download starts by averaging three quick requests
+async function measureUnloadedLatency() {
+    const url = 'https://speed.cloudflare.com/__down?bytes=0';
+    const attempts = 3;
+    let total = 0;
+    for (let i = 0; i < attempts; i++) {
+        const start = performance.now();
+        try {
+            await fetch(url, { cache: 'no-store' });
+        } catch (e) {
+            // ignore errors, still count time
+        }
+        total += performance.now() - start;
+    }
+    return total / attempts;
+}
+
+function performUploadTest(downloadMbps, downloadedBytes) {
+    // Use XMLHttpRequest to get progress events for a smoother live upload speed display
+    const uploadUrl = "https://speed.cloudflare.com/__up?bytes=5000000";
+    const data = new Uint8Array(5_000_000);
+    const xhr = new XMLHttpRequest();
+    let start = performance.now();
+
+    xhr.open('POST', uploadUrl);
+    xhr.upload.onprogress = function (e) {
+        if (e.lengthComputable) {
+            const elapsed = (performance.now() - start) / 1000; // seconds
+            const uploaded = e.loaded; // bytes
+            totalUploadedBytes = uploaded;
+            const uploadMbps = ((uploaded * 8) / elapsed) / 1000000;
+            document.getElementById('uploadSpeedVal').innerText = uploadMbps.toFixed(1);
+            // Update upload data display in real time
+            const uploadElem = document.getElementById('uploadData');
+            if (uploadElem) {
+                const mb = (totalUploadedBytes / (1024 * 1024)).toFixed(1);
+                uploadElem.innerText = `${mb} MB ⬆`;
+            }
+        }
+    };
+    xhr.onload = function () {
+        // Ensure final speed is displayed (may already be close)
+        const totalDur = (performance.now() - start) / 1000;
+        const finalMbps = ((data.byteLength * 8) / totalDur) / 1000000;
+        document.getElementById('uploadSpeedVal').innerText = finalMbps.toFixed(1);
+        // Update total uploaded bytes counter
+        totalUploadedBytes = data.byteLength;
+        finishTest(downloadMbps, downloadedBytes + data.byteLength);
+    };
+    xhr.onerror = function () {
+        // On error, just finish without upload speed
+        finishTest(downloadMbps, downloadedBytes);
+    };
+    // Abort handling – if the main test is stopped, abort the upload as well
+    if (abortController) {
+        abortController.signal.addEventListener('abort', () => xhr.abort());
+    }
+    xhr.send(data);
+}
+
+function finishTest(finalMbps, totalBytes) {
+    isTesting = false;
+    clearInterval(animInterval);
+    clearTimeout(timerId);
+
+    const numDisplay = document.getElementById('numDisplay');
+    const unitDisplay = document.getElementById('unitDisplay');
+    const actionBtn = document.getElementById('actionBtn');
+    const toggleBtn = document.getElementById('toggleBtn');
+
+    numDisplay.className = "number finished";
+    if (finalMbps < 1) {
+        numDisplay.innerText = Math.round(finalMbps * 1024);
+        unitDisplay.innerText = 'Kbps';
+    } else {
+        numDisplay.innerText = finalMbps > 10 ? finalMbps.toFixed(0) : finalMbps.toFixed(1);
+        unitDisplay.innerText = 'Mbps';
+    }
+    actionBtn.innerText = "↻";
+    actionBtn.title = "Re-test";
+    // Apply finished styling (green ring) and remove testing spinner
+    actionBtn.classList.remove('testing');
+    actionBtn.classList.add('finished');
+    toggleBtn.disabled = false;
+
+    // Populate total data used metric (do not overwrite latency values which were set earlier)
+    const totalMb = (totalBytes / (1024 * 1024)).toFixed(2);
+    let totalDataElem = document.getElementById('totalData');
+    if (!totalDataElem) {
+        const container = document.querySelector('.grid-stats');
+        const div = document.createElement('div');
+        div.className = 'stat-item';
+        div.innerHTML = `<div class="label">Total Data Used</div><div class="val" id="totalData">${totalMb} MB</div>`;
+        container.appendChild(div);
+    } else {
+        totalDataElem.innerText = `${totalMb} MB`;
+    }
+
+    // Update download and upload data rows
+    const downloadMb = (totalDownloadedBytes / (1024 * 1024)).toFixed(1);
+    const uploadMb = (totalUploadedBytes / (1024 * 1024)).toFixed(1);
+    const downloadElem = document.getElementById('downloadData');
+    const uploadElem = document.getElementById('uploadData');
+    if (downloadElem) downloadElem.innerText = `${downloadMb} MB ⬇`;
+    if (uploadElem) uploadElem.innerText = `${uploadMb} MB ⬆`;
+}
+
+async function stopSpeedTest() {
+    isTesting = false;
+    if (abortController) abortController.abort();
+    clearInterval(animInterval);
+    clearTimeout(timerId);
+    const numDisplay = document.getElementById('numDisplay');
+    const actionBtn = document.getElementById('actionBtn');
+    const toggleBtn = document.getElementById('toggleBtn');
+    // Mark the displayed speed as finished (dimmed)
+    numDisplay.className = "number finished";
+    actionBtn.innerText = "↻";
+    actionBtn.title = "Re-test";
+    // Apply finished styling (green ring) and ensure spinner stopped
+    actionBtn.classList.remove('testing');
+    actionBtn.classList.add('finished');
+    toggleBtn.disabled = false;
+    // Measure loaded latency after pause
+    const loadedLatency = await measureLatency();
+    document.getElementById('latencyLoadedVal').innerText = `${loadedLatency.toFixed(1)}`;
+    // Update upload data display if upload measurement was enabled
+    if (settings.upload) {
+        const uploadMb = (totalUploadedBytes / (1024 * 1024)).toFixed(1);
+        const uploadElem = document.getElementById('uploadData');
+        if (uploadElem) uploadElem.innerText = `${uploadMb} MB ⬆`;
+        // Perform a quick upload test to provide a speed value
+        const uploadUrl = "https://speed.cloudflare.com/__up?bytes=1000000";
+        const start = performance.now();
+        const data = new Uint8Array(1_000_000);
+        try {
+            await fetch(uploadUrl, { method: "POST", body: data, cache: "no-store" });
+            const dur = (performance.now() - start) / 1000;
+            const uploadMbps = ((data.byteLength * 8) / dur) / 1000000;
+            document.getElementById('uploadSpeedVal').innerText = uploadMbps.toFixed(1);
+        } catch (e) {
+            // ignore errors, leave existing value
+        }
+    }
+}
+
+function toggleMoreInfo() {
+    const infoContainer = document.getElementById('moreInfo');
+    const toggleBtn = document.getElementById('toggleBtn');
+    if (infoContainer.classList.contains('open')) {
+        infoContainer.classList.remove('open');
+        toggleBtn.innerText = "Show more info";
+    } else {
+        infoContainer.classList.add('open');
+        toggleBtn.innerText = "Hide info";
     }
 }
 </script>
